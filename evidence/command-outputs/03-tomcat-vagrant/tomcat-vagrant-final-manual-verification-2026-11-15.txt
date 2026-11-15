@@ -1,0 +1,21 @@
+Tomcat / Vagrant / Nginx final manual verification — 2026-11-15
+
+Provenance
+These results were supplied by the user after manual verification. Raw terminal output was not provided to this session; this record preserves the reported commands and outcomes without presenting them as agent-captured output.
+
+VM and forwarding
+- Ubuntu VM boots successfully after PAE/NX was enabled in its VirtualBox settings.
+- `vagrant ssh -c "echo SSH_OK"` => succeeds and prints `SSH_OK`.
+- `vagrant port` reports guest 80 => host 80, guest 7070 => host 9090, and guest 22 => host 2222.
+
+Services and HTTP
+- Tomcat 9 is active and running.
+- Nginx is active and running.
+- Inside Ubuntu, `curl -I http://127.0.0.1:7070/sample/` => HTTP 200.
+- Inside Ubuntu, `curl -I http://127.0.0.1/sample/` => HTTP 200.
+- Windows hosts-file resolution maps `progresssoft.test` to `127.0.0.1`.
+- Chrome successfully opened `http://progresssoft.test/sample/`.
+- User-captured browser evidence: `evidence/screenshots/03-tomcat-vagrant/Screenshot 2026-11-15 183053.png`.
+
+Status
+The guest port 80 to host port 80 forward and local DNS-name access are now reported working. This supersedes the earlier E_ACCESSDENIED, port 80 refusal, and unresolved-host reports. `progresssoft.test` is local hosts-file DNS and is not publicly resolvable.

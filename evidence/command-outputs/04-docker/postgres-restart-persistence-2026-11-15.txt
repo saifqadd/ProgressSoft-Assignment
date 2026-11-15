@@ -1,0 +1,12 @@
+Command: docker compose -f docker/compose.yaml restart postgres
+ Container docker-postgres-1 Restarting
+ Container docker-postgres-1 Started
+health=starting
+health=starting
+health=healthy
+ id |         value
+----+-----------------------
+  1 | postgres-container-ok
+(1 row)
+
+PostgreSQL smoke row persisted after restart.

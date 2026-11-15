@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assignment-nginx
+  labels:
+    app: assignment-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: assignment-nginx
+  template:
+    metadata:
+      labels:
+        app: assignment-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: assignment-nginx
+spec:
+  selector:
+    app: assignment-nginx
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+  type: ClusterIP

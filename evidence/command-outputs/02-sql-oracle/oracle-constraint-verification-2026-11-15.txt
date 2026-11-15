@@ -1,0 +1,10 @@
+Negative salary rejected by CHECK: PASS
+Unknown department rejected by FOREIGN KEY: PASS
+Duplicate employee ID rejected by PRIMARY KEY: PASS
+
+PL/SQL procedure successfully completed.
+
+
+UNINTENDED_TEST_ROWS
+--------------------
+		   0

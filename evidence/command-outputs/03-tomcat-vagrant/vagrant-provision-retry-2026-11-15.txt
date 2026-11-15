@@ -1,0 +1,128 @@
+==> default: Running provisioner: shell...
+    default: Running: C:/Users/saifa/AppData/Local/Temp/vagrant-shell20261115-11828-5mhmvz.sh
+    default: + export DEBIAN_FRONTEND=noninteractive
+    default: + DEBIAN_FRONTEND=noninteractive
+    default: + apt-get update
+    default: Hit:1 http://security.ubuntu.com/ubuntu noble-security InRelease
+    default: Hit:2 http://us.archive.ubuntu.com/ubuntu noble InRelease
+    default: Get:3 https://packages.adoptium.net/artifactory/deb noble InRelease [7,501 B]
+    default: Hit:4 http://us.archive.ubuntu.com/ubuntu noble-updates InRelease
+    default: Hit:5 http://us.archive.ubuntu.com/ubuntu noble-backports InRelease
+    default: Fetched 7,501 B in 5s (1,660 B/s)
+    default: Reading package lists...
+    default: + apt-get install -y ca-certificates curl gnupg
+    default: Reading package lists...
+    default: Building dependency tree...
+    default: Reading state information...
+    default: ca-certificates is already the newest version (20260816ubuntu0.24.04.2).
+    default: curl is already the newest version (8.5.0-2ubuntu10.16).
+    default: gnupg is already the newest version (2.4.4-2ubuntu17.6).
+    default: 0 upgraded, 0 newly installed, 0 to remove and 235 not upgraded.
+    default: + install -d -m 0755 /etc/apt/keyrings
+    default: + gpg --batch --yes --dearmor -o /etc/apt/keyrings/adoptium.gpg
+    default: + curl -fsSL https://packages.adoptium.net/artifactory/api/gpg/key/public
+    default: + chmod 0644 /etc/apt/keyrings/adoptium.gpg
+    default: + . /etc/os-release
+    default: ++ PRETTY_NAME='Ubuntu 24.04.3 LTS'
+    default: ++ NAME=Ubuntu
+    default: ++ VERSION_ID=24.04
+    default: ++ VERSION='24.04.3 LTS (Noble Numbat)'
+    default: ++ VERSION_CODENAME=noble
+    default: ++ ID=ubuntu
+    default: ++ ID_LIKE=debian
+    default: ++ HOME_URL=https://www.ubuntu.com/
+    default: ++ SUPPORT_URL=https://help.ubuntu.com/
+    default: ++ BUG_REPORT_URL=https://bugs.launchpad.net/ubuntu/
+    default: ++ PRIVACY_POLICY_URL=https://www.ubuntu.com/legal/terms-and-policies/privacy-policy
+    default: ++ UBUNTU_CODENAME=noble
+    default: ++ LOGO=ubuntu-logo
+    default: + echo 'deb [signed-by=/etc/apt/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb noble main'
+    default: + apt-get update
+    default: Hit:1 http://security.ubuntu.com/ubuntu noble-security InRelease
+    default: Hit:2 http://us.archive.ubuntu.com/ubuntu noble InRelease
+    default: Hit:3 http://us.archive.ubuntu.com/ubuntu noble-updates InRelease
+    default: Hit:4 http://us.archive.ubuntu.com/ubuntu noble-backports InRelease
+    default: Hit:5 https://packages.adoptium.net/artifactory/deb noble InRelease
+    default: Reading package lists...
+    default: + apt-get install -y temurin-8-jdk maven nginx curl tar
+    default: Reading package lists...
+    default: Building dependency tree...
+    default: Reading state information...
+    default: temurin-8-jdk is already the newest version (8.0.512.0.0+9-0).
+    default: maven is already the newest version (3.8.7-2).
+    default: nginx is already the newest version (1.24.0-2ubuntu7.19).
+    default: curl is already the newest version (8.5.0-2ubuntu10.16).
+    default: tar is already the newest version (1.35+dfsg-3ubuntu0.4).
+    default: 0 upgraded, 0 newly installed, 0 to remove and 235 not upgraded.
+    default: + install -d -o vagrant -g vagrant /tmp/progresssoft-sample
+    default: + cp /vagrant-docker/pom.xml /tmp/progresssoft-sample/pom.xml
+    default: + cp -R /vagrant-docker/src /tmp/progresssoft-sample/src
+    default: + chown -R vagrant:vagrant /tmp/progresssoft-sample
+    default: + runuser -u vagrant -- mvn --batch-mode --no-transfer-progress -f /tmp/progresssoft-sample/pom.xml package
+    default: [INFO] Scanning for projects...
+    default: [INFO]
+    default: [INFO] -----------------< com.progresssoft.assignment:sample >-----------------
+    default: [INFO] Building sample 1.0.0
+    default: [INFO] --------------------------------[ war ]---------------------------------
+    default: [INFO]
+    default: [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ sample ---
+    default: [INFO] Using 'UTF-8' encoding to copy filtered resources.
+    default: [INFO] skip non existing resourceDirectory /tmp/progresssoft-sample/src/main/resources
+    default: [INFO]
+    default: [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ sample ---
+    default: [INFO] Nothing to compile - all classes are up to date
+    default: [INFO]
+    default: [INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ sample ---
+    default: [INFO] Using 'UTF-8' encoding to copy filtered resources.
+    default: [INFO] skip non existing resourceDirectory /tmp/progresssoft-sample/src/test/resources
+    default: [INFO]
+    default: [INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ sample ---
+    default: [INFO] No sources to compile
+    default: [INFO]
+    default: [INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ sample ---
+    default: [INFO] No tests to run.
+    default: [INFO]
+    default: [INFO] --- maven-war-plugin:3.4.0:war (default-war) @ sample ---
+    default: [INFO] Packaging webapp
+    default: [INFO] Assembling webapp [sample] in [/tmp/progresssoft-sample/target/sample]
+    default: [INFO] Processing war project
+    default: [INFO] Building war: /tmp/progresssoft-sample/target/sample.war
+    default: [INFO] ------------------------------------------------------------------------
+    default: [INFO] BUILD SUCCESS
+    default: [INFO] ------------------------------------------------------------------------
+    default: [INFO] Total time:  33.553 s
+    default: [INFO] Finished at: 2026-11-15T13:36:08Z
+    default: [INFO] ------------------------------------------------------------------------
+    default: + TOMCAT_VERSION=9.0.124
+    default: + TOMCAT_ARCHIVE=apache-tomcat-9.0.124.tar.gz
+    default: + TOMCAT_BASE=https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.124/bin
+    default: + curl -fsSLo /tmp/apache-tomcat-9.0.124.tar.gz https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.124/bin/apache-tomcat-9.0.124.tar.gz
+    default: + curl -fsSLo /tmp/apache-tomcat-9.0.124.tar.gz.sha512 https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.124/bin/apache-tomcat-9.0.124.tar.gz.sha512
+    default: + cd /tmp
+    default: + sha512sum -c apache-tomcat-9.0.124.tar.gz.sha512
+    default: apache-tomcat-9.0.124.tar.gz: OK
+    default: + id tomcat
+    default: + useradd --system --home-dir /opt/tomcat9 --shell /usr/sbin/nologin tomcat
+    default: + install -d -o tomcat -g tomcat /opt/tomcat9
+    default: + tar -xzf /tmp/apache-tomcat-9.0.124.tar.gz --strip-components=1 -C /opt/tomcat9
+    default: + install -m 0644 /vagrant/server.xml /opt/tomcat9/conf/server.xml
+    default: + install -d -o tomcat -g tomcat /opt/tomcat9/webapps
+    default: + install -o tomcat -g tomcat -m 0644 /tmp/progresssoft-sample/target/sample.war /opt/tomcat9/webapps/sample.war
+    default: + chown -R tomcat:tomcat /opt/tomcat9
+    default: +++ command -v java
+    default: ++ readlink -f /usr/bin/java
+    default: + java_path=/usr/lib/jvm/temurin-8-jdk-amd64/bin/java
+    default: + java_home=/usr/lib/jvm/temurin-8-jdk-amd64
+    default: + cat
+    default: + systemctl daemon-reload
+    default: + systemctl enable --now tomcat9
+    default: Created symlink /etc/systemd/system/multi-user.target.wants/tomcat9.service → /etc/systemd/system/tomcat9.service.
+    default: + install -m 0644 /vagrant/nginx.conf /etc/nginx/sites-available/progresssoft-tomcat
+    default: + ln -sfn /etc/nginx/sites-available/progresssoft-tomcat /etc/nginx/sites-enabled/progresssoft-tomcat
+    default: + rm -f /etc/nginx/sites-enabled/default
+    default: + nginx -t
+    default: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+    default: nginx: configuration file /etc/nginx/nginx.conf test is successful
+    default: + systemctl enable --now nginx
+    default: Synchronizing state of nginx.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+    default: Executing: /usr/lib/systemd/systemd-sysv-install enable nginx

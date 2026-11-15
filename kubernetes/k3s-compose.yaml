@@ -1,0 +1,22 @@
+# Single-node K3s cluster using the official K3s container image.
+# Docker Desktop/WSL2 provides the Linux kernel; the cluster is isolated in a
+# privileged development container with persistent cluster state.
+services:
+  k3s-server:
+    image: rancher/k3s:v1.37.2-k3s1
+    command: server
+    privileged: true
+    restart: unless-stopped
+    mem_limit: 3g
+    cpus: 2
+    tmpfs:
+      - /run
+      - /var/run
+    ports:
+      - "127.0.0.1:6443:6443"
+      - "127.0.0.1:8081:8081"
+    volumes:
+      - k3s_server_data:/var/lib/rancher/k3s
+
+volumes:
+  k3s_server_data:

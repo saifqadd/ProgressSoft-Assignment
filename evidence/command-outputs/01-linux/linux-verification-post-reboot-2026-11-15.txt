@@ -1,0 +1,171 @@
+ProgressSoft assignment — post-reboot Linux verification
+Date: 2026-11-15 (Asia/Amman)
+Target: saif@127.0.0.1:2222, authenticated with the dedicated Ed25519 key.
+Scope: read-only checks; no package, service, account, password, or firewall
+configuration was changed during verification.
+
+Simple SSH connection test
+--------------------------
+SSH_KEY_OK
+saif
+ps-VirtualBox
+2026-11-15T00:35:47+03:00
+
+Grouped checks
+--------------
+
+=== MYSQL PACKAGE ===
+Package: mysql-server
+Status: install ok installed
+Version: 8.0.46-0ubuntu0.22.04.5
+
+=== MYSQL SERVICE ===
+active
+enabled
+
+=== MYSQL LOCAL SOCKET CONNECTIVITY ===
+mysqladmin: connect to server at 'localhost' failed
+error: 'Access denied for user 'saif'@'localhost' (using password: NO)'
+sudo: a password is required
+
+Interpretation: the local server responded on its socket, but the `saif`
+MySQL account was not authorized without a password. A privileged read-only
+SQL query was not run because noninteractive sudo was unavailable.
+
+=== HAPROXY PACKAGE ===
+Package: haproxy
+Status: install ok installed
+Version: 2.4.30-0ubuntu0.22.04.4
+
+=== HAPROXY SERVICE AND CONFIGURATION ===
+active
+enabled
+Configuration file is valid
+
+=== UFW PACKAGE AND FIREWALL STATUS ===
+Package: ufw
+Status: install ok installed
+Version: 0.36.1-4ubuntu0.1
+sudo: a password is required
+
+Interpretation: package is installed, but current enabled/disabled state and
+firewall rules were not readable without sudo. No rules were changed.
+
+=== PS USER AND GROUPS ===
+uid=1001(PS) gid=1001(PSgroup) groups=1001(PSgroup),1002(dba)
+PS:x:1001:1001::/home/PS:/bin/bash
+PSgroup:x:1001:
+dba:x:1002:PS
+
+=== ROOT PASSWORD STATUS AND LAST CHANGE ===
+sudo: a password is required
+sudo: a password is required
+
+The root password update itself was previously confirmed by the user's
+terminal output (`passwd: password updated successfully`). Status and
+last-change date were not queried in this session.
+
+=== SYSTEM INFORMATION SCRIPT ===
+System Information
+Executed By: saif
+Hostname: ps-VirtualBox
+Server IP: 10.0.2.15
+Public IP: [REDACTED from repository evidence; lookup succeeded]
+OS Type and Version: Ubuntu 22.04
+Kernel Version: 6.8.0-149-generic
+Architecture: x86_64
+Virtualization: oracle
+Server Time: Sun Nov 15 00:35:06 +03 2026
+Timezone: Asia/Amman
+Uptime: up 6 minutes
+
+Resource Usage
+Total Memory: 3.8 GiB
+Memory Usage: 1.4 GiB / 3.8 GiB
+Swap Usage: 0 MiB / 3.1 GiB
+CPU Cores: 2
+
+Final privileged checks (user-provided terminal transcript)
+-----------------------------------------------------------
+Command sequence: `sudo mysqladmin --protocol=socket ping`,
+`sudo ufw status verbose`, `sudo passwd -S root`, `sudo chage -l root`.
+
+mysqld is alive
+Status: inactive
+root P 11/14/2026 0 99999 7 -1
+Last password change                                    : تشرين الثاني 14, 2026
+Password expires                                        : never
+Password inactive                                       : never
+Account expires                                         : never
+Minimum number of days between password change          : 0
+Maximum number of days between password change          : 99999
+Number of days of warning before password expires       : 7
+
+Interpretation: MySQL's local ping succeeded. UFW is installed but
+inactive, so the firewall requirement is not configured. `passwd -S`
+reports root status `P` (password set); last change was November 14, 2026.
+The password value was not collected.
+
+UFW rule staging review (user-provided terminal transcript)
+-----------------------------------------------------------
+Rules updated
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+Default outgoing policy changed to 'allow'
+(be sure to update your rules accordingly)
+Added user rules (see 'ufw status' for running firewall):
+ufw allow from 10.0.2.2 to any port 22 proto tcp
+ufw allow 3306/tcp
+ufw allow 3306/udp
+Status: inactive
+
+The staged rules were reviewed and contain only the approved SSH exception
+and the requested TCP/UDP 3306 allows. UFW was not enabled in this command;
+the subsequent enable and new-SSH verification are recorded below.
+
+UFW enable and final status (user-provided terminal transcript)
+---------------------------------------------------------------
+Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
+Firewall is active and enabled on system startup
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    10.0.2.2
+3306/tcp                   ALLOW IN    Anywhere
+3306/udp                   ALLOW IN    Anywhere
+3306/tcp (v6)              ALLOW IN    Anywhere (v6)
+3306/udp (v6)              ALLOW IN    Anywhere (v6)
+
+Status: active
+
+    To                         Action      From
+    --                         ------      ----
+[ 1] 22/tcp                     ALLOW IN    10.0.2.2
+[ 2] 3306/tcp                   ALLOW IN    Anywhere
+[ 3] 3306/udp                   ALLOW IN    Anywhere
+[ 4] 3306/tcp (v6)              ALLOW IN    Anywhere (v6)
+[ 5] 3306/udp                   ALLOW IN    Anywhere (v6)
+
+New SSH connection after UFW enable (agent-run, key-only)
+---------------------------------------------------------
+NEW_SSH_AFTER_UFW_OK
+saif
+ps-VirtualBox
+2026-11-15T01:17:29+03:00
+
+This verifies the approved SSH management exception remained functional.
+The policy allows incoming SSH from 10.0.2.2 and TCP/UDP 3306 (IPv4/IPv6).
+It is not strict port-3306-only compliance.
+
+Privacy note
+------------
+The system report's public IP value was redacted from this repository copy.
+No password or private SSH key is present in this evidence file.

@@ -1,0 +1,17 @@
+Linux SCP file-transfer verification — 2026-11-15
+
+Provenance
+These results were supplied by the user after completing the transfer. Raw command output was not provided to this session; this record reports the supplied results and does not present them as agent-captured output.
+
+Source (Windows): `linux/system_report.sh`
+Destination VM: `ProgressSoft-Desktop` (Ubuntu hostname `ps-VirtualBox`, SSH user `saif`)
+Destination path: `/tmp/progresssoft-scp-verification-system_report.sh`
+Transfer: SCP over SSH, Windows host port 2222
+
+Transfer result: successful.
+
+SHA-256 (Windows): `ae4e4512186ea33c4e922e664dd6b728fb2815a1d894507a6160753684109ea7`
+SHA-256 (Ubuntu):  `ae4e4512186ea33c4e922e664dd6b728fb2815a1d894507a6160753684109ea7`
+Result: hashes match.
+
+An earlier host-key warning is preserved in `scp-host-key-blocker-2026-11-15.txt` as historical context. This record documents the later successful transfer; it does not infer how the earlier mismatch was resolved.

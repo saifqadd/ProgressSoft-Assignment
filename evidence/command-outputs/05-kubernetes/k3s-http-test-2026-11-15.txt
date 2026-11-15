@@ -1,0 +1,5 @@
+Command: kubectl port-forward service/assignment-nginx 8081:80 (inside K3s)
+HTTP GET http://127.0.0.1:8081/ => 200
+BodyMarker=Welcome to nginx
+BodyMarker=Welcome to nginx
+Genuine Nginx welcome response returned through K3s Service/port-forward.

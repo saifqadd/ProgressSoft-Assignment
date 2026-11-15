@@ -1,0 +1,66 @@
+# Secrets, credentials, and local runtime state
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.ppk
+id_rsa
+id_ed25519
+id_ecdsa
+id_dsa
+*.p12
+*.pfx
+*.jks
+*.jceks
+*.keystore
+*.cred
+*.credentials
+credentials.*
+.netrc
+*.tfstate*
+.vagrant/
+*.box
+.tmp/
+.ssh/
+.aws/
+.docker/config.json
+
+# Confidential assignment source and exported VM media
+*.pdf
+*.PDF
+*.vdi
+*.vmdk
+*.vhd
+*.vhdx
+*.ova
+*.ovf
+*.iso
+*.qcow2
+
+# Database dumps and backups (SQL source scripts remain included)
+*.dmp
+*.dump
+*.bak
+*.backup
+*.sql.gz
+
+# Build/runtime output
+target/
+*.war
+*.class
+*.log
+screenshots/*
+!screenshots/README.md
+/evidence/screenshots/
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+/Home - Shortcut.lnk
+# Oracle credentials are generated locally and must never be committed.
+oracle/secrets/*.txt
+docker/secrets/postgres_password.txt

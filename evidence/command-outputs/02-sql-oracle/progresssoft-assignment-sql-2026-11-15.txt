@@ -1,0 +1,136 @@
+=== Q1 schema ===
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Index created.
+
+
+Index created.
+
+
+Index created.
+
+=== Sample data ===
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+=== Q4 EMP test fixture ===
+
+Table created.
+
+
+1 row created.
+
+
+Commit complete.
+
+=== Q2 and Q4 answers (Q3 intentionally omitted) ===
+
+EMPLOYEE_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    SALARY DEPARTMENT_NAME
+---------- ----------------------------------------------------------------------------------------------------
+MANAGER_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+GENDER_NAME
+--------------------------------------------------
+UNIVERSITY_NAME
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+SCOTT SCOTT
+      3000 HR
+
+Male
+Example University
+
+AHMAD AHMAD
+      3500 HR
+SCOTT SCOTT
+Male
+Example University
+
+RAMI RAMI
+      2700 Engineering
+SCOTT SCOTT
+Male
+Example University
+
+JANE DOE
+      2800 HR
+SCOTT SCOTT
+Female
+Example University
+
+
+
+     EMPNO ENAME      ANNUAL SALARY
+---------- ---------- -------------
+      9001 DEMO 	      15000
+
+=== Q5/Q6 PL/SQL ===
+
+Function created.
+
+
+Procedure created.
+
+=== Q5/Q6 demonstration ===
+JANE DOE | 1988-01-15
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+
+SOURCE_ROWS COPIED_ROWS
+----------- -----------
+	  4	      4
+
+
+TABLE_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+EMP
+GENDER
+MYDEPARTMENT
+MYEMPLOYEE
+MYEMPLOYEE_UPDATE
+UNIVERSITY
+
+6 rows selected.

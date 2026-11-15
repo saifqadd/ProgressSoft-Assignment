@@ -1,0 +1,22 @@
+Q3 agreed interpretation: group by department name because source schema has no job-title field; exclude department Sales.
+Oracle Database Free 26ai / PS_ASSIGNMENT / FREEPDB1
+Query executed:
+SELECT d.NAME AS DEPARTMENT_NAME, SUM(e.SALARY) AS TOTAL_MONTHLY_SALARY
+FROM MyEmployee e JOIN MyDepartment d ON e.DEPT_ID = d.DEPT_ID
+WHERE UPPER(d.NAME) <> 'SALES'
+GROUP BY d.NAME
+HAVING SUM(e.SALARY) > 2500;
+SQL*Plus output:
+
+DEPARTMENT_NAME
+----------------------------------------------------------------------------------------------------
+TOTAL_MONTHLY_SALARY
+--------------------
+Engineering
+		2700
+
+HR
+		9300
+
+
+2 rows selected.

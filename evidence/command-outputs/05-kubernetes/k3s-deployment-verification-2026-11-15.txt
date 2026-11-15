@@ -1,0 +1,23 @@
+Node status:
+NAME           STATUS   ROLES           AGE     VERSION        INTERNAL-IP   EXTERNAL-IP   OS-IMAGE           KERNEL-VERSION                              CONTAINER-RUNTIME
+bc82f48d75dd   Ready    control-plane   2m21s   v1.37.2+k3s1   172.20.0.2    <none>        K3s v1.37.2+k3s1   6.18.58.1-microsoft-standard-WSL2 (amd64)   containerd://2.3.7-k3s1
+Apply assignment manifest:
+deployment.apps/assignment-nginx created
+service/assignment-nginx created
+Rollout status:
+Waiting for deployment "assignment-nginx" rollout to finish: 0 of 1 updated replicas are available...
+deployment "assignment-nginx" successfully rolled out
+Nodes, pods, deployment and service:
+NAME                STATUS   ROLES           AGE     VERSION        INTERNAL-IP   EXTERNAL-IP   OS-IMAGE           KERNEL-VERSION                              CONTAINER-RUNTIME
+node/bc82f48d75dd   Ready    control-plane   2m38s   v1.37.2+k3s1   172.20.0.2    <none>        K3s v1.37.2+k3s1   6.18.58.1-microsoft-standard-WSL2 (amd64)   containerd://2.3.7-k3s1
+
+NAME                                    READY   STATUS    RESTARTS   AGE   IP           NODE           NOMINATED NODE   READINESS GATES
+pod/assignment-nginx-55cdd66dd8-zswp7   1/1     Running   0          16s   10.42.0.10   bc82f48d75dd   <none>           <none>
+
+NAME                               READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES              SELECTOR
+deployment.apps/assignment-nginx   1/1     1            1           16s   nginx        nginx:1.27-alpine   app=assignment-nginx
+
+NAME                       TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)   AGE     SELECTOR
+service/assignment-nginx   ClusterIP   10.43.69.63   <none>        80/TCP    16s     app=assignment-nginx
+service/kubernetes         ClusterIP   10.43.0.1     <none>        443/TCP   2m40s   <none>
+ExitCode=0
